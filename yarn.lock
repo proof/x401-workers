@@ -69,10 +69,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20251014.0":
-  version: 4.20260702.1
-  resolution: "@cloudflare/workers-types@npm:4.20260702.1"
-  checksum: 10c0/2dbd1d8d99285b49f90457321cc6f3668ac2fb89c9e24b36539e60f67925611078724093176bfbe06c8ab8d98eafd4902e4faa2e96a1378f96b14498c28ccdda
+"@cloudflare/workers-types@npm:^5.20261010.1":
+  version: 5.20261010.1
+  resolution: "@cloudflare/workers-types@npm:5.20261010.1"
+  checksum: 10c0/69b1e19a45866e72d4019649171a3db2ed8cf3c6e2b66b740f1a3dc42b07bac70c953c7749866f987d131f7422f4cee34b89fcbd187840b5b8f5e79e275fb9e2
   languageName: node
   linkType: hard
 
@@ -294,7 +294,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@proof.com/x401-workers@workspace:."
   dependencies:
-    "@cloudflare/workers-types": "npm:^4.20251014.0"
+    "@cloudflare/workers-types": "npm:^5.20261010.1"
     "@proof.com/proof-vc-common": "npm:^0.6.2"
     "@proof.com/proof-vc-server": "npm:^0.6.2"
     "@proof.com/x401-node": "npm:^0.3.3"
