@@ -24,10 +24,15 @@
 - `yarn test`
 - `yarn publint`
 
+## Template
+
+`template/` is a standalone npm project. After changing it, run `npm run check` and `npm test` in
+`template/`, and `npm run cf-typegen` if `wrangler.jsonc` changed.
+
 ## Pull Requests
 
 - Branch off `main`, keep changes focused, explain what changed and why.
-- CI runs `format`, `lint`, `typecheck`, `test` (Node 22 and 24), `build` and `publint`; all are required on `main`.
+- CI runs `format`, `lint`, `typecheck`, `test` (Node 22 and 24), `template`, `build` and `publint`; all are required on `main`.
 
 ## Code of conduct
 

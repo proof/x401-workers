@@ -1,1 +1,4 @@
 .yarn/
+template/.wrangler/
+template/package-lock.json
+template/worker-configuration.d.ts

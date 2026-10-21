@@ -1,0 +1,41 @@
+{
+  "name": "x401-verifier",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cf-typegen": "wrangler types --strict-vars=false --env=sandbox",
+    "check": "tsc --noEmit && wrangler deploy --dry-run --env=sandbox && wrangler deploy --dry-run --env=production",
+    "deploy": "node scripts/setup.mjs",
+    "dev": "wrangler d1 migrations apply DB --local --env=sandbox && wrangler dev --env=sandbox --var X401_CLIENT_ID:http://localhost:8787/.well-known/proof-client.json",
+    "setup": "node scripts/setup.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p test"
+  },
+  "dependencies": {
+    "@proof.com/x401-workers": "^0.1.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.4.6",
+    "@proof.com/proof-vc-server": "^0.6.3",
+    "@types/node": "^24.13.2",
+    "jsonc-parser": "^3.3.1",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5",
+    "wrangler": "^4.151.3"
+  },
+  "cloudflare": {
+    "label": "x401 Verifier",
+    "products": [
+      "Workers",
+      "D1"
+    ],
+    "docs_url": "https://github.com/proof/x401-workers/tree/main/template",
+    "bindings": {
+      "SIGNING_JWK": {
+        "description": "ES256 private JWK of the Verifier. Generate it with `npm run setup` in a local clone."
+      }
+    }
+  }
+}

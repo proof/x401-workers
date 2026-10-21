@@ -228,7 +228,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@owf/crypto@npm:^0.4.1":
+"@owf/crypto@npm:^0.4.2":
   version: 0.4.2
   resolution: "@owf/crypto@npm:0.4.2"
   dependencies:
@@ -238,14 +238,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@owf/identity-common@npm:0.4.2, @owf/identity-common@npm:^0.4.0, @owf/identity-common@npm:^0.4.1":
+"@owf/identity-common@npm:0.4.2, @owf/identity-common@npm:^0.4.0, @owf/identity-common@npm:^0.4.2":
   version: 0.4.2
   resolution: "@owf/identity-common@npm:0.4.2"
   checksum: 10c0/172aa7bfe665ad7d80171a062863faa6632cd4430b938eb3c74e3fcb3792accbe55aa6635ea71e7e5ae84e95bf50b40c346b8a0fc1004c43cfb8b289e2dbf066
   languageName: node
   linkType: hard
 
-"@owf/token-status-list@npm:^0.4.1":
+"@owf/token-status-list@npm:^0.4.2":
   version: 0.4.2
   resolution: "@owf/token-status-list@npm:0.4.2"
   dependencies:
@@ -258,26 +258,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@proof.com/proof-vc-common@npm:0.6.2, @proof.com/proof-vc-common@npm:^0.6.2":
-  version: 0.6.2
-  resolution: "@proof.com/proof-vc-common@npm:0.6.2"
-  checksum: 10c0/caaef8a93fa7d8d6872157f791bbad2d8db6d8fd2e9b25c9e0f17cabc9574d9ac3c405679893d996150684142ed37b9f2dacb6ec2f0e4488ec8add256c141c75
+"@proof.com/proof-vc-common@npm:0.6.3, @proof.com/proof-vc-common@npm:^0.6.3":
+  version: 0.6.3
+  resolution: "@proof.com/proof-vc-common@npm:0.6.3"
+  checksum: 10c0/66bbc4b0203be28ff80db64cf69683e3a865f220f92e36a4dd7e5271de72971c803751a8187e2b1ff11f489319a820c38cc4a4d483837c4b30f8095aa27d05be
   languageName: node
   linkType: hard
 
-"@proof.com/proof-vc-server@npm:^0.6.2":
-  version: 0.6.2
-  resolution: "@proof.com/proof-vc-server@npm:0.6.2"
+"@proof.com/proof-vc-server@npm:^0.6.3":
+  version: 0.6.3
+  resolution: "@proof.com/proof-vc-server@npm:0.6.3"
   dependencies:
-    "@owf/crypto": "npm:^0.4.1"
-    "@owf/identity-common": "npm:^0.4.1"
-    "@proof.com/proof-vc-common": "npm:0.6.2"
-    "@sd-jwt/core": "npm:^0.21.1"
-    "@sd-jwt/sd-jwt-vc": "npm:^0.21.1"
+    "@owf/crypto": "npm:^0.4.2"
+    "@owf/identity-common": "npm:^0.4.2"
+    "@proof.com/proof-vc-common": "npm:0.6.3"
+    "@sd-jwt/core": "npm:^0.22.0"
+    "@sd-jwt/sd-jwt-vc": "npm:^0.22.0"
     jose: "npm:^6.2.12"
   bin:
     proof: dist/cli.js
-  checksum: 10c0/7293c06910eda943ad464792e9f577f3eca1b04a2e56f2888d5a9d3cf68401c35ea2d75067eecfc27d5578f83f113fae6256df6971cb70278edb01b6b06ab108
+  checksum: 10c0/2125d96ccb5d4f9d408baf4e39faa3fdd41d6879ae50dc7f1b7717742ede460b596009b41d39c759311156813b6f5eda0b14e76729871af8d267fb60ece42c1e
   languageName: node
   linkType: hard
 
@@ -295,8 +295,8 @@ __metadata:
   resolution: "@proof.com/x401-workers@workspace:."
   dependencies:
     "@cloudflare/workers-types": "npm:^5.20261010.1"
-    "@proof.com/proof-vc-common": "npm:^0.6.2"
-    "@proof.com/proof-vc-server": "npm:^0.6.2"
+    "@proof.com/proof-vc-common": "npm:^0.6.3"
+    "@proof.com/proof-vc-server": "npm:^0.6.3"
     "@proof.com/x401-node": "npm:^0.3.3"
     "@types/node": "npm:^24.13.2"
     eslint: "npm:^10.5.0"
@@ -325,24 +325,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sd-jwt/core@npm:0.21.1, @sd-jwt/core@npm:^0.21.1":
-  version: 0.21.1
-  resolution: "@sd-jwt/core@npm:0.21.1"
+"@sd-jwt/core@npm:0.22.0, @sd-jwt/core@npm:^0.22.0":
+  version: 0.22.0
+  resolution: "@sd-jwt/core@npm:0.22.0"
   dependencies:
-    "@owf/identity-common": "npm:^0.4.1"
-  checksum: 10c0/0fcca0a410f5872bb3c490bbd4ed96925188924b3796eb2a9af6368e79a18e6f0913eccb0bff82ac4ea49436b0a9b77335329fa939deca6144b7e243edced556
+    "@owf/identity-common": "npm:^0.4.2"
+  checksum: 10c0/26ad3bdbfbf13edadc890060f6a1fde8fb7ce3a74d6ae8a5cec8dd47922d152b34c887c5ac11e39f3fb07549199224034eb570fedb0f8cd9ff11bf3bf388a86b
   languageName: node
   linkType: hard
 
-"@sd-jwt/sd-jwt-vc@npm:^0.21.1":
-  version: 0.21.1
-  resolution: "@sd-jwt/sd-jwt-vc@npm:0.21.1"
+"@sd-jwt/sd-jwt-vc@npm:^0.22.0":
+  version: 0.22.0
+  resolution: "@sd-jwt/sd-jwt-vc@npm:0.22.0"
   dependencies:
-    "@owf/identity-common": "npm:^0.4.1"
-    "@owf/token-status-list": "npm:^0.4.1"
-    "@sd-jwt/core": "npm:0.21.1"
+    "@owf/identity-common": "npm:^0.4.2"
+    "@owf/token-status-list": "npm:^0.4.2"
+    "@sd-jwt/core": "npm:0.22.0"
     zod: "npm:^4.6.5"
-  checksum: 10c0/e13ea3048eb8e4aee19c8334c16f77372bfbce226b2a5efa0b9eac291bcf6bd36780d1d65fa61cee29273b675f99c22359cd93649e0bdeff3ba4aa78921ec6aa
+  checksum: 10c0/125c11e8e1c13d9414b1f79ac602c36096457c6f449a09a287a3aaf28b87ae49e8f43930220d9454dd1abde56630bf00aa743c97eaff40e5bba081b990dd0fbd
   languageName: node
   linkType: hard
 
