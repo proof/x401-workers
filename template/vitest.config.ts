@@ -8,7 +8,7 @@ export default defineConfig(async () => {
   return {
     plugins: [
       cloudflareTest({
-        wrangler: { configPath: "./wrangler.jsonc" },
+        wrangler: { configPath: "./wrangler.jsonc", environment: "sandbox" },
         miniflare: {
           bindings: {
             SIGNING_JWK: JSON.stringify(privateKey.export({ format: "jwk" })),

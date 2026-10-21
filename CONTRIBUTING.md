@@ -32,7 +32,7 @@
 ## Pull Requests
 
 - Branch off `main`, keep changes focused, explain what changed and why.
-- CI runs `format`, `lint`, `typecheck`, `test` (Node 22 and 24), `build` and `publint`; all are required on `main`.
+- CI runs `format`, `lint`, `typecheck`, `test` (Node 22 and 24), `template`, `build` and `publint`; all are required on `main`.
 
 ## Code of conduct
 

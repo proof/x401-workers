@@ -35,8 +35,8 @@ if (
 }
 const environment = flags.includes("--production") ? "production" : "sandbox";
 const production = environment === "production";
-const envArgs = [production ? "--env=production" : "--env="];
-const envPath = production ? ["env", "production"] : [];
+const envArgs = [`--env=${environment}`];
+const envPath = ["env", environment];
 const keyFile = `signing-key.${environment}.json`;
 
 function step(message) {

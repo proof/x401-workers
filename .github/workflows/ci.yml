@@ -70,6 +70,28 @@ jobs:
       - if: needs.test-matrix.result != 'success'
         run: exit 1
 
+  template:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: corepack enable
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: yarn
+      - run: yarn install
+      - run: npm pack --pack-destination template
+      - working-directory: template
+        run: npm ci
+      - working-directory: template
+        run: npm install --no-save ./proof.com-x401-workers-*.tgz
+      - working-directory: template
+        run: npm run cf-typegen -- --check
+      - working-directory: template
+        run: npm run check
+      - working-directory: template
+        run: npm test
+
   build:
     runs-on: ubuntu-latest
     steps:

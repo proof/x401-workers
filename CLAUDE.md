@@ -41,7 +41,7 @@ verification.
 - `template/` — C3 / Deploy button template (`npm create cloudflare -- --template=proof/x401-workers/template`).
   A standalone npm project depending on the published package; it uses only the public API. Its
   config validation and `scripts/setup.mjs` are template-only and add no library defaults. Tested
-  by `.github/workflows/template.yml`; `yarn check-all` only formats and lints it.
+  by the `template` job in `.github/workflows/ci.yml`; `yarn check-all` only formats and lints it.
 
 ## Publishing
 

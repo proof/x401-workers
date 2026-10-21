@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "cf-typegen": "wrangler types --strict-vars=false",
-    "check": "tsc --noEmit && wrangler deploy --dry-run --env= && wrangler deploy --dry-run --env=production",
+    "cf-typegen": "wrangler types --strict-vars=false --env=sandbox",
+    "check": "tsc --noEmit && wrangler deploy --dry-run --env=sandbox && wrangler deploy --dry-run --env=production",
     "deploy": "node scripts/setup.mjs",
-    "dev": "wrangler d1 migrations apply DB --local && wrangler dev --var X401_CLIENT_ID:http://localhost:8787/.well-known/proof-client.json",
+    "dev": "wrangler d1 migrations apply DB --local --env=sandbox && wrangler dev --env=sandbox --var X401_CLIENT_ID:http://localhost:8787/.well-known/proof-client.json",
     "setup": "node scripts/setup.mjs",
     "smoke": "node scripts/smoke.mjs",
     "test": "vitest run",
