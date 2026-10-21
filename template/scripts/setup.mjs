@@ -13,9 +13,10 @@ import { createInterface } from "node:readline/promises";
 import { applyEdits, modify, parse } from "jsonc-parser";
 import { CIMD_PATH, PROTECTED_PATH, smoke } from "./smoke.mjs";
 
-const USAGE = `Usage: npm run setup -- [--production] [--fresh]
+const USAGE = `Usage: npm run setup -- [--sandbox | --production] [--fresh]
 
-  --production  Deploy and enroll the production Verifier on a domain you own (default: sandbox).
+  --sandbox     Deploy on workers.dev and enroll on Proof's sandbox (default).
+  --production  Deploy on a domain you own and enroll on Proof's production.
   --fresh       Discard the environment's signing key, client id and enrollment, then set up again.`;
 
 const WRANGLER_CONFIG = "wrangler.jsonc";
@@ -23,7 +24,12 @@ const DEV_VARS = ".dev.vars";
 const ENROLLMENT_FILE = ".proof-enrollment.json";
 
 const flags = process.argv.slice(2);
-if (flags.some((flag) => flag !== "--production" && flag !== "--fresh")) {
+if (
+  flags.some(
+    (flag) => !["--sandbox", "--production", "--fresh"].includes(flag),
+  ) ||
+  (flags.includes("--sandbox") && flags.includes("--production"))
+) {
   console.error(USAGE);
   process.exit(1);
 }
