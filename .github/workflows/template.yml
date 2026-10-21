@@ -1,0 +1,72 @@
+name: Template
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_run:
+    workflows: [Publish]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  against-source:
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: corepack enable
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: yarn
+      - run: yarn install
+      - run: npm pack --pack-destination template
+      - working-directory: template
+        run: npm ci
+      - working-directory: template
+        run: npm install --no-save ./proof.com-x401-workers-*.tgz
+      - working-directory: template
+        run: npx wrangler types --strict-vars=false --check
+      - working-directory: template
+        run: npm run check
+      - working-directory: template
+        run: npm test
+
+  against-npm:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_run'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+      - working-directory: template
+        run: npm install
+      - working-directory: template
+        run: npm run check
+      - working-directory: template
+        run: npm test
+
+  c3-scaffold:
+    if: github.event_name == 'push' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: >-
+          npm create cloudflare@latest -- ci-app
+          --template=${{ github.repository }}/template#${{ github.sha }}
+          --no-deploy --git=false --open=false
+      - working-directory: ci-app
+        run: grep -q nodejs_compat wrangler.jsonc
+      - working-directory: ci-app
+        run: npm run check
+      - working-directory: ci-app
+        run: npm test

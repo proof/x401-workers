@@ -38,9 +38,15 @@ verification.
 - `src/index.ts` — `withX401` and the public barrel (nothing else is public).
 - `src/stores/d1.ts`, `src/stores/kv.ts` — `NonceStore` implementations.
 - `src/hono.ts` — Hono middleware, exported as `@proof.com/x401-workers/hono`.
+- `template/` — C3 / Deploy button template (`npm create cloudflare -- --template=proof/x401-workers/template`).
+  A standalone npm project depending on the published package; it uses only the public API. Its
+  config validation and `scripts/setup.mjs` are template-only and add no library defaults. Tested
+  by `.github/workflows/template.yml`; `yarn check-all` only formats and lints it.
 
 ## Publishing
 
 Same flow as `@proof.com/x401-node`: bump on a `release-X.Y.Z` branch, merge, then
 `gh release create vX.Y.Z --target <merged sha> --generate-notes`. The Release triggers
 `publish.yml` (npm Trusted Publishing, `npm publish --provenance --access public`).
+On every release, bump `@proof.com/x401-workers` in `template/package.json` (on 0.x, `^0.1.0` does
+not accept `0.2.0`) and refresh `template/package-lock.json`.

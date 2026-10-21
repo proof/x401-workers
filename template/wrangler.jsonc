@@ -1,0 +1,41 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "x401-verifier",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "x401-verifier",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "X401_ENVIRONMENT": "sandbox",
+    "X401_SCOPE": "urn:proof:params:scope:verifiable-credentials:basic",
+    "X401_CLIENT_ID": "",
+    "X401_CLIENT_NAME": "x401 Verifier"
+  },
+  "secrets": { "required": ["SIGNING_JWK"] },
+  "env": {
+    "production": {
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "x401-verifier-production",
+          "migrations_dir": "migrations"
+        }
+      ],
+      "vars": {
+        "X401_ENVIRONMENT": "production",
+        "X401_SCOPE": "urn:proof:params:scope:verifiable-credentials:basic",
+        "X401_CLIENT_ID": "",
+        "X401_CLIENT_NAME": "x401 Verifier"
+      },
+      "secrets": { "required": ["SIGNING_JWK"] },
+      "routes": []
+    }
+  }
+}

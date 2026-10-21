@@ -9,6 +9,18 @@ Credentials presentation request. The user agent delegates it to the user's **Wa
 with a `PROOF-RESPONSE` header. This package builds the request, verifies the presented credential
 against Proof, accepts each nonce once, and hands the verified presentation to your handler.
 
+## Start from a template
+
+Create, deploy and enroll a sandbox Verifier:
+
+```sh
+npm create cloudflare@latest -- my-verifier --template=proof/x401-workers/template
+cd my-verifier
+npm run setup
+```
+
+See [template/README.md](template/README.md).
+
 ## Installation
 
 ```sh
@@ -44,7 +56,8 @@ An x401 **Verifier** is an OID4VP client identified by the URL of its
    your `clientId`; the samples below serve it at `/.well-known/proof-client.json`.
 
 3. **Register your CIMD.** Enroll on Proof as an x401 Verifier once the CIMD is live, then follow
-   the instructions received by email. The email must be on the CIMD's domain.
+   the instructions received by email. The `enroll` command requires the email to be on the CIMD's
+   domain.
 
    ```sh
    npx @proof.com/proof-vc-server enroll https://example.com/.well-known/proof-client.json --email admin@example.com --key signing-key.json
