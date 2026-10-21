@@ -56,8 +56,7 @@ An x401 **Verifier** is an OID4VP client identified by the URL of its
    your `clientId`; the samples below serve it at `/.well-known/proof-client.json`.
 
 3. **Register your CIMD.** Enroll on Proof as an x401 Verifier once the CIMD is live, then follow
-   the instructions received by email. The `enroll` command requires the email to be on the CIMD's
-   domain.
+   the instructions received by email. In production, the email must be on the CIMD's domain.
 
    ```sh
    npx @proof.com/proof-vc-server enroll https://example.com/.well-known/proof-client.json --email admin@example.com --key signing-key.json

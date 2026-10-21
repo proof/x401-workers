@@ -48,8 +48,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@proof.com/proof-vc-common": "^0.6.2",
-    "@proof.com/proof-vc-server": "^0.6.2",
+    "@proof.com/proof-vc-common": "^0.6.3",
+    "@proof.com/proof-vc-server": "^0.6.3",
     "@proof.com/x401-node": "^0.3.3"
   },
   "devDependencies": {
