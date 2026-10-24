@@ -70,9 +70,9 @@ __metadata:
   linkType: hard
 
 "@cloudflare/workers-types@npm:^5.20261010.1":
-  version: 5.20261010.1
-  resolution: "@cloudflare/workers-types@npm:5.20261010.1"
-  checksum: 10c0/69b1e19a45866e72d4019649171a3db2ed8cf3c6e2b66b740f1a3dc42b07bac70c953c7749866f987d131f7422f4cee34b89fcbd187840b5b8f5e79e275fb9e2
+  version: 5.20261016.1
+  resolution: "@cloudflare/workers-types@npm:5.20261016.1"
+  checksum: 10c0/af3f816ecb5881eef23c1903f456383f47d9c8c088a5f6f929842ae1f52a83abedb0d263847b21c04db08f6e31916056cd028ac6af8fc8a2903a78d81cefe8e9
   languageName: node
   linkType: hard
 
@@ -732,8 +732,8 @@ __metadata:
   linkType: hard
 
 "eslint@npm:^10.5.0":
-  version: 10.12.0
-  resolution: "eslint@npm:10.12.0"
+  version: 10.13.0
+  resolution: "eslint@npm:10.13.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.8.0"
     "@eslint-community/regexpp": "npm:^4.12.2"
@@ -772,7 +772,7 @@ __metadata:
       optional: true
   bin:
     eslint: bin/eslint.js
-  checksum: 10c0/1302ce8a7df2f67fe8f4014b2f9449bd38eb86903ba7b841d9a8ca5a5daf8ee15442861ab870e96c0074d5f333b405d7b2f16388981f807db410cc3a02178af9
+  checksum: 10c0/4a28e85de458f13306d30f07df21b58109056bd8bd691b6158952d95e126cf742db2eb09562e3f1c1cc0154ee44dedc789f8ced8d0d8da48e82a689aa9cb1c0d
   languageName: node
   linkType: hard
 
