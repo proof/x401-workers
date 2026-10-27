@@ -78,7 +78,7 @@ async function consumeNonce(
   options: X401Options,
   presentation: VPToken,
 ): Promise<void> {
-  const credentials = Object.values(presentation).flat();
+  const credentials = Object.values(presentation).flatMap((list) => list ?? []);
   if (credentials.length === 0) {
     throw new X401Error("invalid_result", {
       cause: new Error("presentation contains no credential"),

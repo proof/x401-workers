@@ -17,6 +17,9 @@ export async function challenge(options: X401Options): Promise<Response> {
     scope: options.scope,
     nonce: await options.nonceStore.mint(),
     expectedOrigins: options.expectedOrigins as [string, ...string[]],
+    ...(options.transactionData !== undefined && {
+      transactionData: options.transactionData,
+    }),
   });
   const payload = x401.buildPayload({
     credentialRequirements: {

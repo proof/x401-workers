@@ -4,6 +4,7 @@ import { Hono } from "hono";
 import { exportJWK, generateKeyPair } from "jose";
 import { agent, HEADER } from "@proof.com/x401-node";
 import { ProofVCError } from "@proof.com/proof-vc-common";
+import { transactionData } from "@proof.com/proof-vc-server";
 import { x401 } from "../src/hono.ts";
 import {
   clientMetadataDocument,
@@ -102,6 +103,50 @@ test("a request without PROOF-RESPONSE gets a 401 challenge bound to a minted no
   assert.deepEqual(claims.expected_origins, [TRUST_LIST]);
   assert.equal(store.minted.length, 1);
   assert.equal(claims.nonce, store.minted[0]);
+  assert.equal("transaction_data" in claims, false);
+});
+
+test("transactionData is signed into the request as its single transaction_data entry", async () => {
+  const entry = base64url({
+    type: "urn:proof:params:vc:transaction-data:mpp-payment-challenge:v1",
+    credential_ids: ["proof_id_default"],
+    payload: { challenge_id: "ch_1" },
+  });
+  const handler = withX401(
+    async () => new Response("granted"),
+    () => ({ ...optionsFor(memoryStore()), transactionData: entry }),
+  );
+  const response = await handler(new Request("https://verifier.example/p"));
+
+  const payload = agent.decodePayload(
+    response.headers.get(HEADER.PROOF_REQUEST)!,
+  );
+  const entryOf = agent.getDigitalCredentialRequest(payload).requests[0]!;
+  const claims = decodeJwtPayload(
+    (entryOf.data as { request: string }).request,
+  );
+  assert.deepEqual(claims.transaction_data, [entry]);
+});
+
+test("transactionData also accepts a transaction data object and encodes it", async () => {
+  const data = transactionData.paymentItemized({
+    currency: "USD",
+    items: [{ quantity: 1, unit_cost: 12.5, label: "Book" }],
+  });
+  const handler = withX401(
+    async () => new Response("granted"),
+    () => ({ ...optionsFor(memoryStore()), transactionData: data }),
+  );
+  const response = await handler(new Request("https://verifier.example/p"));
+
+  const payload = agent.decodePayload(
+    response.headers.get(HEADER.PROOF_REQUEST)!,
+  );
+  const entryOf = agent.getDigitalCredentialRequest(payload).requests[0]!;
+  const claims = decodeJwtPayload(
+    (entryOf.data as { request: string }).request,
+  );
+  assert.deepEqual(claims.transaction_data, [base64url(data)]);
 });
 
 test("a malformed PROOF-RESPONSE gets a 400 with a fixed PROOF-RESULT description and no new challenge", async () => {

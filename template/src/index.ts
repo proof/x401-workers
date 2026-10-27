@@ -63,7 +63,7 @@ async function route(request: Request, env: Env): Promise<Response> {
           Object.fromEntries(
             Object.entries(presentation).map(([id, credentials]) => [
               id,
-              credentials.map((credential) => credential.toJSON()),
+              (credentials ?? []).map((credential) => credential.toJSON()),
             ]),
           ),
         ),
