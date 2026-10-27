@@ -17,13 +17,13 @@
     "@proof.com/x401-workers": "^0.1.0"
   },
   "devDependencies": {
-    "@cloudflare/vitest-plugin": "^1.4.6",
+    "@cloudflare/vitest-plugin": "^1.4.8",
     "@proof.com/proof-vc-server": "^0.6.3",
     "@types/node": "^24.13.2",
     "jsonc-parser": "^3.3.1",
     "typescript": "^6.0.3",
     "vitest": "^5.0.5",
-    "wrangler": "^4.151.3"
+    "wrangler": "^4.153.0"
   },
   "cloudflare": {
     "label": "x401 Verifier",
