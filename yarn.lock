@@ -258,26 +258,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@proof.com/proof-vc-common@npm:0.6.3, @proof.com/proof-vc-common@npm:^0.6.3":
-  version: 0.6.3
-  resolution: "@proof.com/proof-vc-common@npm:0.6.3"
-  checksum: 10c0/66bbc4b0203be28ff80db64cf69683e3a865f220f92e36a4dd7e5271de72971c803751a8187e2b1ff11f489319a820c38cc4a4d483837c4b30f8095aa27d05be
+"@proof.com/proof-vc-common@npm:0.7.0, @proof.com/proof-vc-common@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "@proof.com/proof-vc-common@npm:0.7.0"
+  checksum: 10c0/56f42e6ea027d17f1c821a7ee208214497c4293fc7fc88eb6718f8e0af94643c73bff657c7c21856b00b374c9a27be93d2de00acec5716c44038d5d40438f91f
   languageName: node
   linkType: hard
 
-"@proof.com/proof-vc-server@npm:^0.6.3":
-  version: 0.6.3
-  resolution: "@proof.com/proof-vc-server@npm:0.6.3"
+"@proof.com/proof-vc-server@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "@proof.com/proof-vc-server@npm:0.7.0"
   dependencies:
     "@owf/crypto": "npm:^0.4.2"
     "@owf/identity-common": "npm:^0.4.2"
-    "@proof.com/proof-vc-common": "npm:0.6.3"
+    "@proof.com/proof-vc-common": "npm:0.7.0"
     "@sd-jwt/core": "npm:^0.22.0"
     "@sd-jwt/sd-jwt-vc": "npm:^0.22.0"
     jose: "npm:^6.2.12"
   bin:
     proof: dist/cli.js
-  checksum: 10c0/2125d96ccb5d4f9d408baf4e39faa3fdd41d6879ae50dc7f1b7717742ede460b596009b41d39c759311156813b6f5eda0b14e76729871af8d267fb60ece42c1e
+  checksum: 10c0/8fc7901750da1b3564aff8afb0b8d61ef45ca72a0c1c0649029db225e48c31635b5263347784182db64cbac363c437f5fc418083f270dea9f9819380ffd88111
   languageName: node
   linkType: hard
 
@@ -295,8 +295,8 @@ __metadata:
   resolution: "@proof.com/x401-workers@workspace:."
   dependencies:
     "@cloudflare/workers-types": "npm:^5.20261010.1"
-    "@proof.com/proof-vc-common": "npm:^0.6.3"
-    "@proof.com/proof-vc-server": "npm:^0.6.3"
+    "@proof.com/proof-vc-common": "npm:^0.7.0"
+    "@proof.com/proof-vc-server": "npm:^0.7.0"
     "@proof.com/x401-node": "npm:^0.3.3"
     "@types/node": "npm:^24.13.2"
     eslint: "npm:^10.5.0"

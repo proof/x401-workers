@@ -1,5 +1,9 @@
 import type { Environment } from "@proof.com/proof-vc-common";
-import type { PrivateKeyFactory, VPToken } from "@proof.com/proof-vc-server";
+import type {
+  PrivateKeyFactory,
+  TransactionData,
+  VPToken,
+} from "@proof.com/proof-vc-server";
 
 export interface NonceStore {
   mint(): Promise<string>;
@@ -40,6 +44,7 @@ export type X401Options = {
   scope: string;
   expectedOrigins: string[];
   environment?: Environment;
+  transactionData?: TransactionData | string;
   allowInsecureUri?: boolean;
   fetch?: typeof globalThis.fetch;
 };
