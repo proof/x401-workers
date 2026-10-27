@@ -1,6 +1,6 @@
 {
   "name": "@proof.com/x401-workers",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "x401 middleware for Cloudflare Workers.",
   "keywords": [
     "x401",
