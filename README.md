@@ -195,6 +195,10 @@ You can request a signature from a user along with their presented credential. R
 if you require the user to approve a payment mandate, a wire instruction, or anything your business
 needs human approval on. Pass it as `transactionData`. `Env` and `options` are the ones above.
 
+Your options resolver must return the same `transactionData` for the challenge and for the response
+of one exchange. `withX401` compares it with the terms the user signed, and rejects the presentation
+when they differ. The example below builds the same terms on each call.
+
 ```ts
 import { TX_DATA_TYPE, transactionData } from "@proof.com/proof-vc-server";
 
@@ -261,6 +265,7 @@ withX401(
 | No `PROOF-RESPONSE`                        | `401` with `PROOF-REQUEST`                  |
 | Malformed, expired or unfetchable response | `400` with `PROOF-RESULT: invalid_response` |
 | Presentation rejected by Proof             | `401` with `PROOF-RESULT: invalid_result`   |
+| Presentation bound to other terms          | `401` with `PROOF-RESULT: invalid_result`   |
 | Nonce unknown, expired or reused           | `401` with `PROOF-RESULT: invalid_nonce`    |
 
 ## Links

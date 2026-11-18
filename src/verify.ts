@@ -1,6 +1,10 @@
 import { verifier as x401, type ResultArtifact } from "@proof.com/x401-node";
 import { ProofVCError } from "@proof.com/proof-vc-common";
-import { createVerifier, type VPToken } from "@proof.com/proof-vc-server";
+import {
+  createVerifier,
+  type ProofCredential,
+  type VPToken,
+} from "@proof.com/proof-vc-server";
 import { DEFAULT_ENVIRONMENT, X401Error, type X401Options } from "./types.ts";
 
 const CREDENTIAL_RESULT_FETCH_TIMEOUT_MS = 5000;
@@ -74,11 +78,15 @@ async function vpTokenFromResponse(
   return vpToken;
 }
 
+function credentialsOf(presentation: VPToken): ProofCredential[] {
+  return Object.values(presentation).flatMap((list) => list ?? []);
+}
+
 async function consumeNonce(
   options: X401Options,
   presentation: VPToken,
 ): Promise<void> {
-  const credentials = Object.values(presentation).flatMap((list) => list ?? []);
+  const credentials = credentialsOf(presentation);
   if (credentials.length === 0) {
     throw new X401Error("invalid_result", {
       cause: new Error("presentation contains no credential"),
@@ -113,6 +121,11 @@ export async function verifyProofResponse(
       encodedVPToken,
       aud: options.clientId,
     });
+    if (options.transactionData !== undefined) {
+      for (const credential of credentialsOf(presentation)) {
+        credential.checkTransactionData(options.transactionData);
+      }
+    }
   } catch (error) {
     if (
       error instanceof ProofVCError &&

@@ -4,7 +4,10 @@ import { Hono } from "hono";
 import { exportJWK, generateKeyPair } from "jose";
 import { agent, HEADER } from "@proof.com/x401-node";
 import { ProofVCError } from "@proof.com/proof-vc-common";
-import { transactionData } from "@proof.com/proof-vc-server";
+import {
+  encodeTransactionData,
+  transactionData,
+} from "@proof.com/proof-vc-server";
 import { x401 } from "../src/hono.ts";
 import {
   clientMetadataDocument,
@@ -146,7 +149,7 @@ test("transactionData also accepts a transaction data object and encodes it", as
   const claims = decodeJwtPayload(
     (entryOf.data as { request: string }).request,
   );
-  assert.deepEqual(claims.transaction_data, [base64url(data)]);
+  assert.deepEqual(claims.transaction_data, [encodeTransactionData(data)]);
 });
 
 test("a malformed PROOF-RESPONSE gets a 400 with a fixed PROOF-RESULT description and no new challenge", async () => {
