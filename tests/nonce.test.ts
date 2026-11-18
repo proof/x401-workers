@@ -29,7 +29,10 @@ mock.module("@proof.com/proof-vc-server", {
 const { withX401 } = await import("../src/index.ts");
 
 const credential = (nonce: string | undefined): ProofCredential =>
-  ({ getNonce: () => nonce }) as unknown as ProofCredential;
+  ({
+    getNonce: () => nonce,
+    isBoundToTransactionData: () => false,
+  }) as unknown as ProofCredential;
 
 function memoryStore(): NonceStore & { live: Set<string> } {
   const live = new Set<string>();

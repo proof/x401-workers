@@ -137,9 +137,33 @@ test("a presentation bound to no transaction data is rejected with invalid_resul
   assert.equal(resultCode(response), "invalid_result");
 });
 
-test("without transactionData in the options the presentation is not checked", async () => {
+test("a presentation bound to no transaction data is granted when none was sent", async () => {
   const response = await answerWith(() => ({}));
 
   assert.equal(response.status, 200);
   assert.equal(await response.text(), "granted");
+});
+
+test("a presentation the verify leg has nothing to check is rejected with invalid_result", async () => {
+  const store = memoryStore();
+  const nonce = await store.mint();
+  nextPresentation = {
+    proof_id_default: [
+      credentialWith({ nonce, transaction_data_hashes: [hashOf(ORDER)] }),
+    ],
+  };
+  const handler = withX401(
+    async () => new Response("granted"),
+    (request) => ({
+      ...options(store),
+      ...(request.headers.get(HEADER.PROOF_RESPONSE) === null && {
+        transactionData: ORDER,
+      }),
+    }),
+  );
+
+  const response = await handler(presentationRequest());
+
+  assert.equal(response.status, 401);
+  assert.equal(resultCode(response), "invalid_result");
 });

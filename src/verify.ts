@@ -82,6 +82,26 @@ function credentialsOf(presentation: VPToken): ProofCredential[] {
   return Object.values(presentation).flatMap((list) => list ?? []);
 }
 
+// The challenge and the response are two requests, so the options resolver runs twice. A
+// presentation bound to transaction data that the second run did not supply stays unchecked, so
+// refuse it rather than grant terms nobody compared.
+function checkTransactionData(
+  options: X401Options,
+  credential: ProofCredential,
+): void {
+  if (options.transactionData !== undefined) {
+    credential.checkTransactionData(options.transactionData);
+    return;
+  }
+  if (credential.isBoundToTransactionData()) {
+    throw new X401Error("invalid_result", {
+      cause: new Error(
+        "the presentation is bound to transaction data, and the options carry none to check it against",
+      ),
+    });
+  }
+}
+
 async function consumeNonce(
   options: X401Options,
   presentation: VPToken,
@@ -121,10 +141,8 @@ export async function verifyProofResponse(
       encodedVPToken,
       aud: options.clientId,
     });
-    if (options.transactionData !== undefined) {
-      for (const credential of credentialsOf(presentation)) {
-        credential.checkTransactionData(options.transactionData);
-      }
+    for (const credential of credentialsOf(presentation)) {
+      checkTransactionData(options, credential);
     }
   } catch (error) {
     if (

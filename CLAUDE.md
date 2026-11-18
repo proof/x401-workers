@@ -30,8 +30,8 @@ verification.
 - `src/types.ts` — `NonceStore`, `X401Options`, `X401Error`, handler and resolver types.
 - `src/challenge.ts` — builds the signed OpenID4VP request and the `401` + `PROOF-REQUEST` response.
 - `src/verify.ts` — decodes `PROOF-RESPONSE`, dereferences `credential_result_uri`, verifies the
-  presentation with Proof, checks every credential against `options.transactionData` when it is set,
-  consumes the nonce.
+  presentation with Proof, checks every credential against `options.transactionData` and refuses one
+  bound to terms the options do not carry, consumes the nonce.
 - `src/handle.ts` — `handle(request, options)`: the challenge/verify/reject flow shared by the
   adapters; returns the verified `VPToken` or a `Response`.
 - `src/reject.ts` — the `PROOF-RESULT` error response.
