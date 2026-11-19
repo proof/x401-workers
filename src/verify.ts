@@ -82,9 +82,6 @@ function credentialsOf(presentation: VPToken): ProofCredential[] {
   return Object.values(presentation).flatMap((list) => list ?? []);
 }
 
-// The challenge and the response are two requests, so the options resolver runs twice. A
-// presentation bound to transaction data that the second run did not supply stays unchecked, so
-// refuse it rather than grant terms nobody compared.
 function checkTransactionData(
   options: X401Options,
   credential: ProofCredential,
